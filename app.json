@@ -1,0 +1,12 @@
+{
+  "name": "ComeTellMe",
+  "displayName": "ComeTellMe",
+  "expo": {
+    "name": "ComeTellMe",
+    "slug": "ComeTellMe",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
