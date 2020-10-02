@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Animated, Text, View, Dimensions } from 'react-native';
 import Draggable from 'react-native-draggable'
 // import { styles } from '../App'
+// small note edit 
 
 export function Clouds( {route, navigation}) {
   
