@@ -63,7 +63,7 @@ export function Balloons(props, { route }) {
 
           <Draggable
           x={currentOneX} y={160} z={1}
-          renderSize={90}
+          renderSize={20}
           minX={-80}
           minY={-20}
           maxX={screenWidth + 100}
@@ -71,18 +71,19 @@ export function Balloons(props, { route }) {
           onDragRelease={handleBalloonOneRelease}
           >
             <View style={styles.imageWrapper}>
-              <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
-            
+              <ImageBackground style={styles.image} source={require('../public/Balloon3.png')}>
+                <View style={styles.BalloonTextContainer}>
                 <Text style={styles.text}>
                   {setOne}
                 </Text>
+                </View>
               </ImageBackground>
             </View>
           </Draggable>
         
           <Draggable
           x={currentTwoX} y={75} z={1}
-          renderSize={90}
+          renderSize={20}
           // maxX={-50}
           minX={-80}
           minY={-20}
@@ -91,7 +92,7 @@ export function Balloons(props, { route }) {
           onDragRelease={handleBalloonTwoRelease}
           >
             <View style={styles.imageWrapper}>
-              <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
+              <ImageBackground style={styles.image} source={require('../public/Balloon2.png')}>
             
                 <Text style={styles.text}>
                   {setTwo}
@@ -101,7 +102,7 @@ export function Balloons(props, { route }) {
           </Draggable>
           <Draggable
           x={currentThreeX} y={140} z={1}
-          renderSize={90}
+          renderSize={20}
           // maxX={-50}
           minX={-80}
           minY={-20}
@@ -110,7 +111,7 @@ export function Balloons(props, { route }) {
           onDragRelease={handleBalloonThreeRelease}
           >
             <View style={styles.imageWrapper}>
-              <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
+              <ImageBackground style={styles.image} source={require('../public/Balloon1.png')}>
             
                 <Text style={styles.text}>
                   {setThree}
@@ -131,15 +132,12 @@ const styles = StyleSheet.create({
     width: screenWidth,
     height: screenHeight
   },
-  cloudTextContainer: {
+  BalloonTextContainer: {
     flex: 1,
     flexShrink: 1,
-    backgroundColor: 'rgb(250,250,250)',
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'gray', 
-    borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 50,
     margin: 10, 
   },
   text: {
@@ -150,15 +148,15 @@ const styles = StyleSheet.create({
     padding: 10,
    
   },
-  textBox: {
-    backgroundColor: 'rgb(250,250,250)',  
-    height: 100, 
-    width: 350, 
-    borderColor: 'gray', 
-    borderWidth: 1,
-    margin: 10,
-    padding: 5 
-  },
+  // textBox: {
+  //   backgroundColor: 'rgb(250,250,250)',  
+  //   height: 100, 
+  //   width: 350, 
+  //   borderColor: 'gray', 
+  //   borderWidth: 1,
+  //   margin: 10,
+  //   padding: 5 
+  // },
   image: {
     width: '100%',
     height: '100%',
@@ -166,8 +164,8 @@ const styles = StyleSheet.create({
     padding: 20
   }, 
   imageWrapper: {
-    height: 150,
-    width: 250,
+    height: 300,
+    width: 230,
     overflow: "visible" // vs "hidden"
 },
   fakeTack: {

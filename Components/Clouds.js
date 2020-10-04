@@ -88,7 +88,7 @@ export function Clouds({ route }) {
           onDragRelease={handleCloudOneRelease}
           >
             <View style={styles.imageWrapper}>
-              <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
+              <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
             
                 <Text style={styles.text}>
                   {setOne}
@@ -107,7 +107,7 @@ export function Clouds({ route }) {
           onDragRelease={handleCloudTwoRelease}
           >
             <View style={styles.imageWrapper}>
-              <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
+              <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
             
                 <Text style={styles.text}>
                   {setTwo}
@@ -126,7 +126,7 @@ export function Clouds({ route }) {
           onDragRelease={handleCloudThreeRelease}
           >
             <View style={styles.imageWrapper}>
-              <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
+              <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
             
                 <Text style={styles.text}>
                   {setThree}

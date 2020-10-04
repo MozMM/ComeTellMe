@@ -19,6 +19,7 @@ export function HomeScreen( { navigation }) {
         <TextInput
         multiline
         maxLength={120}
+        placeholder={'what\'s bothering you?'}
         style={styles.textBox}
         onChangeText={text => changeStateText(text)}
         // onSubmitEditing={({ nativeEvent }) => }
