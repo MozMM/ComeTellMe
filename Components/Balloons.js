@@ -9,46 +9,49 @@ export function Balloons(props, { route }) {
 
   const fullArr = props.fullString.split(' ')
 
-
   //// Split up input for each component.
   const numWords = fullArr.length
-  const setOne = fullArr.slice(0, Math.floor(numWords * .33)).join(' ')
-  const setTwo = fullArr.slice(Math.floor(numWords * .33), Math.floor(numWords * .70)).join(' ')
+  const setOne = fullArr.slice(0, Math.floor(numWords * .39)).join(' ')
+  const setTwo = fullArr.slice(Math.floor(numWords * .39), Math.floor(numWords * .70)).join(' ')
   const setThree = fullArr.slice(Math.floor(numWords * .70), fullArr.length).join(' ')
 
  
-  // Balloon Y axis on State //
-  const [currentOneY, changeStateOneY] = useState(190);
-  const [currentTwoY, changeStateTwoY] = useState(170);
-  const [currentThreeY, changeStateThreeY] = useState(240);
+  // Balloon X axis on State //
+  const [currentOneX, changeStateOneX] = useState(30);
+  const [currentTwoX, changeStateTwoX] = useState(90);
+  const [currentThreeX, changeStateThreeX] = useState(120);
 
  
   // Balloon ONE
-  function handleCloudOneRelease(event, gestureState, bounds) {
-    
+  function handleBalloonOneRelease(event, gestureState, bounds) {
+    let currentX = gestureState.moveX;
     let currentY = gestureState.moveY;
-      if (currentY <= 125) {
-        changeStateOneY(-200)
-      console.log(passOn, "Sucess, bye Balloon one.")
+
+    //console.log('X:', currentX, 'vs', screenWidth, 'Y:', currentY, 'vs', screenHeight)
+      if (currentX >= screenWidth - 180 && currentY >= screenHeight - 119) {
+        changeStateOneX(-600)
+      console.log("Sucess, POP Balloon 1.")
       }
   }
 
   // Balloon TWO
-  function handleCloudTwoRelease(event, gestureState, bounds) {
+  function handleBalloonTwoRelease(event, gestureState, bounds) {
+    let currentX = gestureState.moveX;
     let currentY = gestureState.moveY;
-      if (currentY <= 125) {
-        changeStateTwoY(-200)
-      console.log("Sucess, bye cloud two.")
-      }
+    if (currentX >= screenWidth - 180 && currentY >= screenHeight - 119) {
+      changeStateTwoX(-600)
+    console.log("Sucess, POP Balloon 2.")
+    }
   }
   
   //Balloon THREE
-  function handleCloudThreeRelease(event, gestureState, bounds) {
+  function handleBalloonThreeRelease(event, gestureState, bounds) {
+    let currentX = gestureState.moveX;
     let currentY = gestureState.moveY;
-      if (currentY <= 125) {
-        changeStateThreeY(-200)
-      console.log("Sucess, bye cloud three.")
-      }
+    if (currentX >= screenWidth - 180 && currentY >= screenHeight - 119) {
+      changeStateThreeX(-600)
+    console.log("Sucess, POP Balloon 3.")
+    }
   }
   
   
@@ -59,13 +62,13 @@ export function Balloons(props, { route }) {
         <View>
 
           <Draggable
-          x={20} y={currentOneY} z={1}
+          x={currentOneX} y={160} z={1}
           renderSize={90}
-          // maxX={-50}
           minX={-80}
+          minY={-20}
           maxX={screenWidth + 100}
           maxY={screenHeight}
-          onDragRelease={handleCloudOneRelease}
+          onDragRelease={handleBalloonOneRelease}
           >
             <View style={styles.imageWrapper}>
               <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
@@ -77,14 +80,15 @@ export function Balloons(props, { route }) {
             </View>
           </Draggable>
         
-          {/* <Draggable
-          x={130} y={currentTwoY} z={3}
+          <Draggable
+          x={currentTwoX} y={75} z={1}
           renderSize={90}
           // maxX={-50}
           minX={-80}
+          minY={-20}
           maxX={screenWidth + 100}
           maxY={screenHeight}
-          onDragRelease={handleCloudTwoRelease}
+          onDragRelease={handleBalloonTwoRelease}
           >
             <View style={styles.imageWrapper}>
               <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
@@ -95,15 +99,15 @@ export function Balloons(props, { route }) {
               </ImageBackground>
             </View>
           </Draggable>
-        
           <Draggable
-          x={90} y={currentThreeY} z={2}
+          x={currentThreeX} y={140} z={1}
           renderSize={90}
           // maxX={-50}
           minX={-80}
+          minY={-20}
           maxX={screenWidth + 100}
           maxY={screenHeight}
-          onDragRelease={handleCloudThreeRelease}
+          onDragRelease={handleBalloonThreeRelease}
           >
             <View style={styles.imageWrapper}>
               <ImageBackground style={styles.image} source={require('../public/cloud1.png')}>
@@ -113,10 +117,10 @@ export function Balloons(props, { route }) {
                 </Text>
               </ImageBackground>
             </View>
-          </Draggable> 
+          </Draggable>
          
-         */}
       </View>
+      <View style={styles.fakeTack}><Text style={styles.tackText}>(TACK)</Text></View>
     </View>
   )
 }
@@ -164,7 +168,16 @@ const styles = StyleSheet.create({
   imageWrapper: {
     height: 150,
     width: 250,
-    overflow: "hidden"
+    overflow: "visible" // vs "hidden"
 },
-  
+  fakeTack: {
+    backgroundColor: 'rgb(250,100,90)',
+    height: 60,
+    width: 60,
+    top: screenHeight - 150,
+    start: screenWidth - 70
+},
+tackText: {
+padding: 8
+}
 });

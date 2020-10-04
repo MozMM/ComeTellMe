@@ -29,7 +29,7 @@ export function HomeScreen( { navigation }) {
       style={styles.button}
       onPress={handlePress}
         >
-        <Text style={styles.buttonText}>cloudify</Text>
+        <Text style={styles.buttonText}>go-ify</Text>
       </TouchableOpacity>
     </View> 
 

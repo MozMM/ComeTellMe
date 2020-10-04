@@ -32,8 +32,8 @@ export function Clouds({ route }) {
 
   // Split up Input for each component in Render.
   const numWords = fullArr.length
-  const setOne = fullArr.slice(0, Math.floor(numWords * .33)).join(' ')
-  const setTwo = fullArr.slice(Math.floor(numWords * .33), Math.floor(numWords * .70)).join(' ')
+  const setOne = fullArr.slice(0, Math.floor(numWords * .39)).join(' ')
+  const setTwo = fullArr.slice(Math.floor(numWords * .39), Math.floor(numWords * .70)).join(' ')
   const setThree = fullArr.slice(Math.floor(numWords * .70), fullArr.length).join(' ')
 
   // Cloud Y axis on State 
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   imageWrapper: {
     height: 150,
     width: 250,
-    overflow: "hidden"
+    overflow: "visible" //"hidden"
 },
   
 });
