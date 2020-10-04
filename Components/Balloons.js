@@ -1,57 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Animated, Text, View, Dimensions, ImageBackground } from 'react-native';
 import Draggable from 'react-native-draggable'
 
-import { Balloons } from './Balloons'
-
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-const angryWords = ['mad', 'frustrated', 'unfair', 'angry', 'red', 'kill', 'murder']
 
-export function Clouds({ route }) {
+export function Balloons(props, { route }) {
 
- // State variable for conditional render
-  const [isAngry, changeStateAngry] = useState(false)
-  
- // Parse the input words.
-  const {theWords} = route.params
-  const fullString = JSON.stringify(theWords).slice(1, JSON.stringify(theWords).length -1)
-  const fullArr = fullString.split(' ')
+  const fullArr = props.fullString.split(' ')
 
-  // check Input for angry words  
-  const checkedAngry = fullArr.some(checkForAngryWords)
-  function checkForAngryWords(word) {
-    return angryWords.includes(word.toLowerCase())
-  }
 
-  // UseEffect prevents crazy dependency loop. useEffect only runs when [dependency] changes (??)
-  useEffect(() => {
-    console.log(checkedAngry)
-    changeStateAngry(checkedAngry)
-  }, [checkedAngry])
-
-  // Split up Input for each component in Render.
+  //// Split up input for each component.
   const numWords = fullArr.length
   const setOne = fullArr.slice(0, Math.floor(numWords * .33)).join(' ')
   const setTwo = fullArr.slice(Math.floor(numWords * .33), Math.floor(numWords * .70)).join(' ')
   const setThree = fullArr.slice(Math.floor(numWords * .70), fullArr.length).join(' ')
 
-  // Cloud Y axis on State 
+ 
+  // Balloon Y axis on State //
   const [currentOneY, changeStateOneY] = useState(190);
   const [currentTwoY, changeStateTwoY] = useState(170);
   const [currentThreeY, changeStateThreeY] = useState(240);
 
  
-  // Cloud ONE
+  // Balloon ONE
   function handleCloudOneRelease(event, gestureState, bounds) {
+    
     let currentY = gestureState.moveY;
       if (currentY <= 125) {
         changeStateOneY(-200)
-      console.log("Sucess, bye cloud one.")
+      console.log(passOn, "Sucess, bye Balloon one.")
       }
   }
 
-  // Cloud TWO
+  // Balloon TWO
   function handleCloudTwoRelease(event, gestureState, bounds) {
     let currentY = gestureState.moveY;
       if (currentY <= 125) {
@@ -60,7 +42,7 @@ export function Clouds({ route }) {
       }
   }
   
-  //Cloud THREE
+  //Balloon THREE
   function handleCloudThreeRelease(event, gestureState, bounds) {
     let currentY = gestureState.moveY;
       if (currentY <= 125) {
@@ -72,11 +54,9 @@ export function Clouds({ route }) {
   
 
   return ( 
-   
     <View>
-      <View style={styles.sky}>
-        {isAngry && <Balloons fullString={fullString}/>}
-        {isAngry ? null : <View>
+     
+        <View>
 
           <Draggable
           x={20} y={currentOneY} z={1}
@@ -97,7 +77,7 @@ export function Clouds({ route }) {
             </View>
           </Draggable>
         
-          <Draggable
+          {/* <Draggable
           x={130} y={currentTwoY} z={3}
           renderSize={90}
           // maxX={-50}
@@ -134,8 +114,8 @@ export function Clouds({ route }) {
               </ImageBackground>
             </View>
           </Draggable> 
-        </View> 
-        }
+         
+         */}
       </View>
     </View>
   )
@@ -188,30 +168,3 @@ const styles = StyleSheet.create({
 },
   
 });
-
-
-//// Example for imageBackground:
-{/* <View style={styles.imageWrapper}>
-     <ImageBackground style={styles.theImage} source={{uri : item.imageUrl}}>
-          <Text>Hey</Text>
-     </ImageBackground>
-</View>
-
-const styles = StyleSheet.create({
-    imageWrapper: {
-        height: 200,
-        width: 200,
-        overflow : "hidden"
-    },
-    theImage: {
-        width: "100%",
-        height: "100%",
-        resizeMode: "cover",
-    }
-}) */}
-
-//Gives info on native events
- //   onLayout={(event) => {
-            //   var {x, y, width, height} = event.nativeEvent.layout;
-            //   console.log(x, y, width, height)
-            // }}

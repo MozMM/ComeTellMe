@@ -9,12 +9,14 @@ import { Clouds } from './Components/Clouds';
 
 import { HomeScreen } from './Components/HomeScreen';
 
+
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
+
         <Stack.Screen
           name="Home"
           component={ HomeScreen } 
@@ -24,6 +26,8 @@ export default function App() {
         name="Clouds" 
         options={{ title: ' ' }}
         component={ Clouds } />
+
+       
       </Stack.Navigator>
     </NavigationContainer>
    
@@ -53,6 +57,13 @@ export const styles = StyleSheet.create({
     padding: 5 }
   }
 );
+
+{/* <Stack.Screen 
+name="FlingEx" 
+options={{ title: 'FLING!' }}
+  component={ FlingExample } /> */}
+
+
 
 {/* < NavigationContainer> */}
 //       {/* <Stack.Navigator>

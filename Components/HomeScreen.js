@@ -5,17 +5,11 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'rea
 
 export function HomeScreen( { navigation }) {
   
-  const [text, changeStateText] = useState();
-
-  // function test(paramText) {
-  //   console.log('TEST FUNC RAN')
-  //   console.log(paramText)
-  // }
+  const [text, changeStateText] = useState('      ');
 
   const handlePress = () => {
   navigation.navigate("Clouds", { theWords: text })
   changeStateText() 
-  // clear() ??
   }
 
   return ( 
@@ -31,10 +25,11 @@ export function HomeScreen( { navigation }) {
         value={text}
       />
       <TouchableOpacity
+      
       style={styles.button}
       onPress={handlePress}
         >
-        <Text>cloudify</Text>
+        <Text style={styles.buttonText}>cloudify</Text>
       </TouchableOpacity>
     </View> 
 
@@ -44,17 +39,23 @@ export function HomeScreen( { navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(250,224,245)',
+    backgroundColor: 'rgb(235,230,265)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: 'rgb(150,140,165)',
-    //color: 'rgb(150,140,165)', 
+    backgroundColor: 'rgb(160,160,215)', // 'rgb(220,220,250)'
     padding: 10,
     paddingHorizontal: 14,
     margin: 15,
-    borderRadius: 10
+    borderRadius: 10,
+    borderColor: 'gray', 
+    borderWidth: 1,
+    
+  },
+  buttonText: {
+    color: 'rgb(253,252,250)',
+    fontSize: 20
   },
   text: {
     fontSize: 40,
@@ -63,9 +64,9 @@ const styles = StyleSheet.create({
 
   },
   textBox: {
-    backgroundColor: 'rgb(250,250,250)',  
+    backgroundColor: 'rgb(253,252,250)',  
     height: 100, 
-    width: 350, 
+    width: 300, 
     borderColor: 'gray', 
     borderWidth: 1,
     borderRadius: 10,
