@@ -6,7 +6,9 @@ import { Balloons } from './Balloons'
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-const angryWords = ['mad', 'frustrated', 'unfair', 'angry', 'red', 'kill', 'murder', 'anger', 'sucks', 'sucky', 'hate', 'ugly']
+const angryWords = ['mad', 'frustrated', 'unfair', 'angry', 'red', 'kill', 'murder', 'anger', 'sucks', 
+'sucky', 'hate', 'ugly', 'asshole','jerk', 'idiot', 'wtf', 'boss'
+ ];
 
 export function Clouds({ route }) {
 
@@ -18,7 +20,7 @@ export function Clouds({ route }) {
   const fullString = JSON.stringify(theWords).slice(1, JSON.stringify(theWords).length -1)
   const fullArr = fullString.split(' ')
 
-  // check Input for angry words  
+  // check Input for angry words  // FIX: re punctuation issue :(
   const checkedAngry = fullArr.some(checkForAngryWords)
   function checkForAngryWords(word) {
     return angryWords.includes(word.toLowerCase())
@@ -148,7 +150,7 @@ export function Clouds({ route }) {
 
 const styles = StyleSheet.create({
   sky: {
-    backgroundColor: 'rgb(190,220,235)',
+    backgroundColor: 'rgb(185,225,239)',
     width: screenWidth,
     height: screenHeight
   },
@@ -186,10 +188,11 @@ byeTextWrapper:{
 },
 byeText: {
   color: 'rgb(253,252,250)',
-  fontSize: 20,
+  fontSize: 24,
   fontWeight: 'bold',
   fontStyle:'italic',
-  textAlign: 'center'
+  textAlign: 'center',
+  padding: 28
     // fontVariant: ['small-caps'],
 },
  // textBox: {

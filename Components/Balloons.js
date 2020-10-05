@@ -26,8 +26,8 @@ export function Balloons(props, { route }) {
   function handleBalloonOneRelease(event, gestureState, bounds) {
     let currentX = gestureState.moveX;
     let currentY = gestureState.moveY;
-    console.log('1 X:', currentX, 'vs', (screenWidth - 185), 'Y:', currentY, 'vs', (screenHeight- 160))
-      if (currentX >= screenWidth - 165 && currentY >= screenHeight - 155) {
+    //console.log('1 X:', currentX, 'vs', (screenWidth - 185), 'Y:', currentY, 'vs', (screenHeight- 160))
+      if (currentX >= screenWidth - 145 && currentY >= screenHeight - 155) {
         changeStateOneX(-600)
       console.log("Sucess, POP Balloon 1.")
       }
@@ -37,8 +37,8 @@ export function Balloons(props, { route }) {
   function handleBalloonTwoRelease(event, gestureState, bounds) {
     let currentX = gestureState.moveX;
     let currentY = gestureState.moveY;
-    console.log('2 X:', currentX, 'vs', (screenWidth - 190), 'Y:', currentY, 'vs', (screenHeight- 160))
-    if (currentX >= screenWidth - 160 && currentY >= screenHeight - 155) {
+    //console.log('2 X:', currentX, 'vs', (screenWidth - 190), 'Y:', currentY, 'vs', (screenHeight- 160))
+    if (currentX >= screenWidth - 145 && currentY >= screenHeight - 155) {
       changeStateTwoX(-600)
     console.log("Sucess, POP Balloon 2.")
     }
@@ -48,8 +48,8 @@ export function Balloons(props, { route }) {
   function handleBalloonThreeRelease(event, gestureState, bounds) {
     let currentX = gestureState.moveX;
     let currentY = gestureState.moveY;
-    console.log('3 X:', currentX, 'vs', (screenWidth - 190), 'Y:', currentY, 'vs', (screenHeight- 160))
-    if (currentX >= screenWidth - 155 && currentY >= screenHeight - 160) {
+    //console.log('3 X:', currentX, 'vs', (screenWidth - 190), 'Y:', currentY, 'vs', (screenHeight- 160))
+    if (currentX >= screenWidth - 145 && currentY >= screenHeight - 155) {
       changeStateThreeX(-600)
     console.log("Sucess, POP Balloon 3.")
     }
