@@ -6,7 +6,7 @@ import { Balloons } from './Balloons'
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-const angryWords = ['mad', 'frustrated', 'unfair', 'angry', 'red', 'kill', 'murder']
+const angryWords = ['mad', 'frustrated', 'unfair', 'angry', 'red', 'kill', 'murder', 'anger', 'sucks', 'sucky', 'hate', 'ugly']
 
 export function Clouds({ route }) {
 
@@ -26,7 +26,6 @@ export function Clouds({ route }) {
 
   // UseEffect prevents crazy dependency loop. useEffect only runs when [dependency] changes (??)
   useEffect(() => {
-    console.log(checkedAngry)
     changeStateAngry(checkedAngry)
   }, [checkedAngry])
 
@@ -74,10 +73,13 @@ export function Clouds({ route }) {
   return ( 
    
     <View>
-      <View style={styles.sky}>
+       <View style={styles.sky}>
+     
         {isAngry && <Balloons fullString={fullString}/>}
         {isAngry ? null : <View>
-
+          <View style={styles.byeTextWrapper} >
+            <Text style={styles.byeText}>( bye ⬆ )</Text>
+          </View>
           <Draggable
           x={20} y={currentOneY} z={1}
           renderSize={90}
@@ -89,10 +91,11 @@ export function Clouds({ route }) {
           >
             <View style={styles.imageWrapper}>
               <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
-            
-                <Text style={styles.text}>
+                <View style={styles.cloudTextContainer}>
+                  <Text style={styles.text}>
                   {setOne}
-                </Text>
+                  </Text>
+                </View>
               </ImageBackground>
             </View>
           </Draggable>
@@ -108,10 +111,11 @@ export function Clouds({ route }) {
           >
             <View style={styles.imageWrapper}>
               <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
-            
+              <View style={styles.cloudTextContainer}>
                 <Text style={styles.text}>
                   {setTwo}
                 </Text>
+              </View>
               </ImageBackground>
             </View>
           </Draggable>
@@ -127,10 +131,11 @@ export function Clouds({ route }) {
           >
             <View style={styles.imageWrapper}>
               <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
-            
+                <View style={styles.cloudTextContainer}>
                 <Text style={styles.text}>
                   {setThree}
                 </Text>
+                </View>
               </ImageBackground>
             </View>
           </Draggable> 
@@ -150,12 +155,9 @@ const styles = StyleSheet.create({
   cloudTextContainer: {
     flex: 1,
     flexShrink: 1,
-    backgroundColor: 'rgb(250,250,250)',
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'gray', 
-    borderWidth: 1,
-    borderRadius: 20,
+    borderRadius: 50,
     margin: 10, 
   },
   text: {
@@ -166,26 +168,39 @@ const styles = StyleSheet.create({
     padding: 10,
    
   },
-  textBox: {
-    backgroundColor: 'rgb(250,250,250)',  
-    height: 100, 
-    width: 350, 
-    borderColor: 'gray', 
-    borderWidth: 1,
-    margin: 10,
-    padding: 5 
-  },
   image: {
-    width: '100%',
+    width: 210,
     height: '100%',
     resizeMode: "cover",
-    padding: 20
+    
+    paddingBottom: 60
   }, 
   imageWrapper: {
-    height: 150,
+    height: 170,
     width: 250,
     overflow: "visible" //"hidden"
 },
+byeTextWrapper:{
+  alignContent:'center',
+  justifyContent: 'center',
+},
+byeText: {
+  color: 'rgb(253,252,250)',
+  fontSize: 20,
+  fontWeight: 'bold',
+  fontStyle:'italic',
+  textAlign: 'center'
+    // fontVariant: ['small-caps'],
+},
+ // textBox: {
+  //   backgroundColor: 'rgb(250,250,250)',  
+  //   height: 100, 
+  //   width: 350, 
+  //   borderColor: 'gray', 
+  //   borderWidth: 1,
+  //   margin: 10,
+  //   padding: 5 
+  // },
   
 });
 

@@ -1,7 +1,8 @@
 import React, { useState }  from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ImageBackground, Dimensions} from 'react-native';
 
-// import { Clouds } from './Clouds';
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 export function HomeScreen( { navigation }) {
   
@@ -15,23 +16,27 @@ export function HomeScreen( { navigation }) {
   return ( 
 
      <View style={styles.container}>
-      <Text style={styles.text}>come tell me</Text>
-        <TextInput
-        multiline
-        maxLength={120}
-        placeholder={'what\'s bothering you?'}
-        style={styles.textBox}
-        onChangeText={text => changeStateText(text)}
-        // onSubmitEditing={({ nativeEvent }) => }
-        value={text}
-      />
-      <TouchableOpacity
-      
-      style={styles.button}
-      onPress={handlePress}
-        >
-        <Text style={styles.buttonText}>go-ify</Text>
-      </TouchableOpacity>
+       <ImageBackground style={styles.backImage}source={require('../public/Homepage1.jpg')}>
+       <View style={styles.container}>
+        <Text style={styles.text}>come tell me</Text>
+          <TextInput
+          multiline
+          maxLength={120}
+          placeholder={'what\'s bothering you?'}
+          style={styles.textBox}
+          onChangeText={text => changeStateText(text)}
+          // onSubmitEditing={({ nativeEvent }) => }
+          value={text}
+        />
+        <TouchableOpacity
+        
+        style={styles.button}
+        onPress={handlePress}
+          >
+          <Text style={styles.buttonText}>go-ify</Text>
+        </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View> 
 
   )
@@ -40,12 +45,16 @@ export function HomeScreen( { navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(235,230,265)',
+    // backgroundColor: 'rgb(235,230,265)',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  backImage: {
+    width: screenWidth,
+    height: screenHeight
+  },
   button: {
-    backgroundColor: 'rgb(160,160,215)', // 'rgb(220,220,250)'
+    backgroundColor: 'rgb(130,125,130)', // 'rgb(160,160,215)', // 'rgb(220,220,250)'
     padding: 10,
     paddingHorizontal: 14,
     margin: 15,
