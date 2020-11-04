@@ -57,23 +57,3 @@ export const styles = StyleSheet.create({
     padding: 5 }
   }
 );
-
-{/* <Stack.Screen 
-name="FlingEx" 
-options={{ title: 'FLING!' }}
-  component={ FlingExample } /> */}
-
-
-
-{/* < NavigationContainer> */}
-//       {/* <Stack.Navigator>
-//       <Stack.Screen name="Clouds" component={Clouds}/>
-//         <Stack.Screen 
-//         name="Home"
-//         component={HomeScreen}/>
-      
-      
-// {/* 
-//       <StatusBar style="auto" /> */}
-//       {/* </Stack.Navigator> */} */}
-{/* //     </NavigationContainer> */}
