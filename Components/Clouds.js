@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Animated, Text, View, Dimensions, ImageBackground } from 'react-native';
-import Draggable from 'react-native-draggable'
+import Draggable from 'react-native-draggable';
 
+// import * as Svg from 'react-native-svg';
+// const { Defs, TextPath, LinearGradient, Ellipse, Stop } = Svg;
+
+import { splitWordSets, checkForAngryWords } from '../utils/wordUtils'
 import { Balloons } from './Balloons'
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-const angryWords = ['mad', 'frustrated', 'unfair', 'angry', 'red', 'kill', 'murder', 'anger', 'sucks', 
-'sucky', 'hate', 'ugly', 'asshole','jerk', 'idiot', 'wtf', 'boss'
- ];
+
 
 export function Clouds({ route }) {
 
@@ -16,26 +18,20 @@ export function Clouds({ route }) {
   const [isAngry, changeStateAngry] = useState(false)
   
  // Parse the input words.
-  const {theWords} = route.params
+  const { theWords } = route.params
   const fullString = JSON.stringify(theWords).slice(1, JSON.stringify(theWords).length -1)
   const fullArr = fullString.split(' ')
 
-  // check Input for angry words  // FIX: re punctuation issue :(
+  // Check Input for angry words 
   const checkedAngry = fullArr.some(checkForAngryWords)
-  function checkForAngryWords(word) {
-    return angryWords.includes(word.toLowerCase())
-  }
-
-  // UseEffect prevents crazy dependency loop. useEffect only runs when [dependency] changes (??)
+  
+  // toggles state variable for conditinal render.
   useEffect(() => {
     changeStateAngry(checkedAngry)
   }, [checkedAngry])
 
   // Split up Input for each component in Render.
-  const numWords = fullArr.length
-  const setOne = fullArr.slice(0, Math.floor(numWords * .39)).join(' ')
-  const setTwo = fullArr.slice(Math.floor(numWords * .39), Math.floor(numWords * .70)).join(' ')
-  const setThree = fullArr.slice(Math.floor(numWords * .70), fullArr.length).join(' ')
+  const wordsSplit = splitWordSets(fullArr)
 
   // Cloud Y axis on State 
   const [currentOneY, changeStateOneY] = useState(190);
@@ -45,48 +41,48 @@ export function Clouds({ route }) {
  
   // Cloud ONE
   function handleCloudOneRelease(event, gestureState, bounds) {
+    console.log("cloud 1.")
     let currentY = gestureState.moveY;
       if (currentY <= 125) {
         changeStateOneY(-200)
-      console.log("Sucess, bye cloud one.")
       }
   }
 
   // Cloud TWO
   function handleCloudTwoRelease(event, gestureState, bounds) {
+    console.log("cloud 2.")
     let currentY = gestureState.moveY;
       if (currentY <= 125) {
         changeStateTwoY(-200)
-      console.log("Sucess, bye cloud two.")
       }
   }
   
   //Cloud THREE
   function handleCloudThreeRelease(event, gestureState, bounds) {
+    console.log("cloud 3.")
     let currentY = gestureState.moveY;
       if (currentY <= 125) {
         changeStateThreeY(-200)
-      console.log("Sucess, bye cloud three.")
       }
   }
   
   
 
   return ( 
-   
     <View>
-       <View style={styles.sky}>
-     
-        {isAngry && <Balloons fullString={fullString}/>}
-        {isAngry ? null : <View>
+      {isAngry && <Balloons fullString={fullString}/>}
+      <View style={styles.sky}>
+        {isAngry ? null : 
+        <View>
           <View style={styles.byeTextWrapper} >
-            <Text style={styles.byeText}>( bye ⬆ )</Text>
+            <Text style={styles.byeText}> ( <Text style={styles.italics}> bye </Text> ⬆ )</Text>
           </View>
           <Draggable
           x={20} y={currentOneY} z={1}
           renderSize={90}
           // maxX={-50}
           minX={-80}
+          touchableOpacityProps={{activeOpacity: 1}}
           maxX={screenWidth + 100}
           maxY={screenHeight}
           onDragRelease={handleCloudOneRelease}
@@ -95,7 +91,7 @@ export function Clouds({ route }) {
               <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
                 <View style={styles.cloudTextContainer}>
                   <Text style={styles.text}>
-                  {setOne}
+                  {wordsSplit.setOne}
                   </Text>
                 </View>
               </ImageBackground>
@@ -107,6 +103,7 @@ export function Clouds({ route }) {
           renderSize={90}
           // maxX={-50}
           minX={-80}
+          touchableOpacityProps={{activeOpacity: 1}}
           maxX={screenWidth + 100}
           maxY={screenHeight}
           onDragRelease={handleCloudTwoRelease}
@@ -115,7 +112,7 @@ export function Clouds({ route }) {
               <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
               <View style={styles.cloudTextContainer}>
                 <Text style={styles.text}>
-                  {setTwo}
+                  {wordsSplit.setTwo}
                 </Text>
               </View>
               </ImageBackground>
@@ -127,6 +124,7 @@ export function Clouds({ route }) {
           renderSize={90}
           // maxX={-50}
           minX={-80}
+          touchableOpacityProps={{activeOpacity: 1}}
           maxX={screenWidth + 100}
           maxY={screenHeight}
           onDragRelease={handleCloudThreeRelease}
@@ -135,7 +133,7 @@ export function Clouds({ route }) {
               <ImageBackground style={styles.image} source={require('../public/Cloud2.png')}>
                 <View style={styles.cloudTextContainer}>
                 <Text style={styles.text}>
-                  {setThree}
+                  {wordsSplit.setThree}
                 </Text>
                 </View>
               </ImageBackground>
@@ -144,8 +142,7 @@ export function Clouds({ route }) {
         </View> 
         }
       </View>
-    </View>
-  )
+    </View>)
 }
 
 const styles = StyleSheet.create({
@@ -163,12 +160,11 @@ const styles = StyleSheet.create({
     margin: 10, 
   },
   text: {
+    color:'rgb(100,125,155)',
     fontSize: 16,
-    alignContent:'center',
-    justifyContent: 'center',
+    textAlign: 'center',
     margin: 10,
     padding: 10,
-   
   },
   image: {
     width: 210,
@@ -180,7 +176,7 @@ const styles = StyleSheet.create({
   imageWrapper: {
     height: 170,
     width: 250,
-    overflow: "visible" //"hidden"
+    overflow: "visible" 
 },
 byeTextWrapper:{
   alignContent:'center',
@@ -190,20 +186,14 @@ byeText: {
   color: 'rgb(253,252,250)',
   fontSize: 24,
   fontWeight: 'bold',
+  textAlign: 'center',
+  padding: 28
+},
+italics: {
+  color: 'rgb(253,252,250)',
+  fontSize: 24,
   fontStyle:'italic',
   textAlign: 'center',
   padding: 28
-    // fontVariant: ['small-caps'],
 },
- // textBox: {
-  //   backgroundColor: 'rgb(250,250,250)',  
-  //   height: 100, 
-  //   width: 350, 
-  //   borderColor: 'gray', 
-  //   borderWidth: 1,
-  //   margin: 10,
-  //   padding: 5 
-  // },
-  
 });
-

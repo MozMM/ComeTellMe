@@ -6,7 +6,7 @@ const screenHeight = Dimensions.get('window').height;
 
 export function HomeScreen( { navigation }) {
   
-  const [text, changeStateText] = useState('      ');
+  const [text, changeStateText] = useState('');
 
   const handlePress = () => {
   navigation.navigate("Clouds", { theWords: text })
@@ -25,7 +25,6 @@ export function HomeScreen( { navigation }) {
           placeholder={'what\'s bothering you?'}
           style={styles.textBox}
           onChangeText={text => changeStateText(text)}
-          // onSubmitEditing={({ nativeEvent }) => }
           value={text}
         />
         <TouchableOpacity
