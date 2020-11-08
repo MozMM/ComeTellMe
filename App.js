@@ -24,17 +24,16 @@ export default function App() {
         />
         <Stack.Screen 
         name="Clouds" 
-        options={{ title: ' ' }}
+        options={{ title: '' }}
         component={ Clouds } />
 
-       
       </Stack.Navigator>
     </NavigationContainer>
    
   );
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgb(250,224,245)',
