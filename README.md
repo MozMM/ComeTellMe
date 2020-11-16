@@ -1,5 +1,7 @@
 # come tell me
 
+![come tell me Demo](https://github.com/MozMM/ComeTellMe/blob/master/public/demo/noTouchesDraftCTM App.gif)
+
 <p align="center">
 <img src=https://github.com/MozMM/ComeTellMe/blob/master/public/Screen_Home.png height="400"> <img src=https://github.com/MozMM/ComeTellMe/blob/master/public/Screen_Clouds.png height="400">
 </p>
