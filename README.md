@@ -9,9 +9,9 @@
     <td width="50%"> 
 This is a lil app that lets people interact with (and get rid of) their own words in a playful and cathartic way. </br></br>
 
-I built it with React Native while at Grace Hopper Academy. Its in progress! I challenged myself to write in functional components and hooks, and use CSS for animation. I loved getting to create something that really bubbled up from my creative center. It felt great to have enough facility with coding to actualize something in this medium!</br></br>
+I built it with React Native while at Grace Hopper Academy. Its in progress! I challenged myself to write in functional components and hooks, and use CSS for animation. I loved getting to create something that really bubbled up from my creative center. It felt great to have enough facility with coding to actualize something in this medium!</br>
 
-Run this on any android device using the Expo SDK. You'll find the needed app, and QR code here:</br>
+You can run the deployed app on any android device using the Expo SDK. You'll find the needed app, and QR code here:</br>
 https://expo.io/@mozmm/projects/ComeTellMe </td>
   </tr>
 </table>
