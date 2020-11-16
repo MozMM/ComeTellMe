@@ -3,7 +3,7 @@
   <tr>
     <td width="50%"> 
       <p align="center">
-       <img src=https://github.com/MozMM/ComeTellMe/blob/main/public/demo/noTouchesDraft.gif height="800">
+       <img src=https://github.com/MozMM/ComeTellMe/blob/main/public/demo/noTouchesDraft.gif height="760">
       </p>
     </td>
     <td width="50%"> 
