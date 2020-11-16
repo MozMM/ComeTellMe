@@ -1,7 +1,7 @@
 # come tell me
 
 <p align="center">
-<img src=https://github.com/MozMM/ComeTellMe/blob/main/public/demo/noTouchesDraft.gif height="430">
+<img src=https://github.com/MozMM/ComeTellMe/blob/main/public/demo/noTouchesDraft.gif height="600">
 </p>
 
 <p align="center">
