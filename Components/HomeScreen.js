@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
   },
   textBox: {
     backgroundColor: 'rgb(253,252,250)',  
-    height: 100, 
+    fontSize: 20,
+    height: 120, 
     width: 300, 
     borderColor: 'gray', 
     borderWidth: 1,
