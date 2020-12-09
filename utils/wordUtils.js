@@ -28,7 +28,16 @@ export const splitWordSets = (fullArr) => {
   return wordsSplit;
 }
 
+//TEST TESTING
+function sum(a, b) {
+  return a + b;
+}
 
-
-
-
+module.exports = {
+sum, 
+alphabet, 
+angryWords, 
+sansPunctuation, 
+checkForAngryWords, 
+splitWordSets 
+}

@@ -2,10 +2,18 @@ import 'react-native';
 import React from 'react';
 import App from '../App';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+jest.mock('react-native', () => {
+  const reactiNative = require.requireActual('react-native')
+  const Platform = reactiNative.Platform;
+  Platform.OS = 'android';
+  return {
+    ...reactiNative,
+    ...Platform
+  }
+});
+
 
 it('renders correctly', () => {
   renderer.create(<App />);
-});
+}, async () => {});
 

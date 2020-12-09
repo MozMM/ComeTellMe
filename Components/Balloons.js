@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Animated, Text, View, Dimensions, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Animated, Vibration, Text, View, Dimensions, ImageBackground, Image } from 'react-native';
 import Draggable from 'react-native-draggable';
 
 // import * as Svg from 'react-native-svg';
@@ -16,7 +16,14 @@ export function Balloons(props) {
   // Split up Input for each component in Render.
   const wordsSplit = splitWordSets(fullArr)
 
- 
+ // Balloons images //
+ const [balloonImage1, changeStateBalloonImg1] = useState(require('../public/Balloon2.png'));
+
+ //Balloon text & style//
+ const [balloonOneText, changeStateBalloonOneText] = useState(wordsSplit.setOne);
+ const [balOneImageWrapper, changeStateBalOneImageWrapper] = useState(styles.imageWrapper)
+ const [balOneImageStyle, changeStateBalOneImageStyle] = useState(styles.image)
+
   // Balloon X axis on State //
   const [currentOneX, changeStateOneX] = useState(40);
   const [currentTwoX, changeStateTwoX] = useState(90);
@@ -29,7 +36,15 @@ export function Balloons(props) {
     let currentX = gestureState.moveX;
     let currentY = gestureState.moveY;
       if (currentX >= screenWidth - 135 && currentY >= screenHeight - 155) {
-        changeStateOneX(-600)
+        Vibration.vibrate(200);
+        changeStateBalloonImg1(require('../public/Blam2.png'))
+        changeStateBalOneImageStyle(styles.blamImage)
+        changeStateBalOneImageWrapper(styles.popWrapper)
+        changeStateBalloonOneText('')
+        setTimeout(() => { 
+          changeStateOneX(-600)
+        }
+        , 600)
       }
   }
 
@@ -66,11 +81,11 @@ export function Balloons(props) {
         touchableOpacityProps={{activeOpacity: 1}}
         onDragRelease={handleBalloonOneRelease}
         >
-          <View style={styles.imageWrapper1}>
-            <ImageBackground style={styles.image} source={require('../public/Balloon2.png')}>
+          <View style={balOneImageWrapper}>
+            <ImageBackground style={balOneImageStyle} source={balloonImage1}>
               <View style={styles.BalloonTextContainer}>
               <Text style={styles.text}>
-                {wordsSplit.setOne}
+                {balloonOneText}
               </Text>
               </View>
             </ImageBackground>
@@ -89,7 +104,7 @@ export function Balloons(props) {
         onDragRelease={handleBalloonTwoRelease}
         >
           <View style={styles.imageWrapper}>
-            <ImageBackground style={styles.image} source={require('../public/Balloon3.png')}>
+            <ImageBackground style={styles.image} source={require('../public/Balloon2.png')}>
               <View style={styles.BalloonTextContainer}>
                 <Text style={styles.text}>
                   {wordsSplit.setTwo}
@@ -110,7 +125,7 @@ export function Balloons(props) {
         onDragRelease={handleBalloonThreeRelease}
         >
           <View style={styles.imageWrapper}>
-            <ImageBackground style={styles.image} source={require('../public/Balloon1.png')}>
+            <ImageBackground style={styles.image} source={require('../public/Balloon3.png')}>
               <View style={styles.BalloonTextContainer}>
                 <Text style={styles.text}>
                   {wordsSplit.setThree}
@@ -162,9 +177,16 @@ const styles = StyleSheet.create({
     padding: 20
 
   },
-  imageWrapper1: {
-    height: 240,
-    width: 230,
+  blamImage: {
+    width: '110%',
+    height: 264,
+    resizeMode: "cover",
+    padding: 20
+  },
+  popWrapper: {
+    transform: [{ translateX: -70 }, { translateY: -40 }],
+    height: 250,
+    width: 260,
     overflow: "visible", 
 },
   imageWrapper: {
