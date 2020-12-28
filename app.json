@@ -8,6 +8,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "description": "A lil app where people can interact with (and get rid of) their own words in a playful and cathartic way. "
+    "description": "This is a little app where you can interact with (and get rid of) your words in a playful and cathartic way. \n\nRun using the QR code to the right, or if you prefer to see a brief video demo, go to the project readme on Github. https://github.com/MozMM/ComeTellMe",
+    "githubUrl": "https://github.com/MozMM/ComeTellMe"
   }
 }
